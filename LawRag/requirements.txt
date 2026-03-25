@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+python-dotenv
+openai
+langchain
+langchain-openai
+langchain-community
+langchain-chroma
+langgraph
+chromadb
+psycopg2-binary
+pydantic
+pydantic_core
+SQLAlchemy
+sqlmodel
+starlette
+email-validator
