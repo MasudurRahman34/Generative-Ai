@@ -1,0 +1,4 @@
+pdfplumber
+pypdf
+sentence-transformers
+numpy
