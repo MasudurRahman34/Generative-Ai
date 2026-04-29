@@ -1,4 +1,4 @@
-from langcha in_community.document_loaders import TextLoader
+from langchain in_community.document_loaders import TextLoader
 
 
 def load_txt_document(file_path: str):

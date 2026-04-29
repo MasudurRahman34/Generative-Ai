@@ -1,0 +1,47 @@
+[33mcommit f5d166b72e82607d93eab3bb48b6984afb116d36[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mchunking[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/chunking[m[33m, [m[1;32mmaster[m[33m)[m
+Author: MasudurRahman34 <mohammadmasud34@example.com>
+Date:   Thu Apr 16 13:10:20 2026 +0100
+
+    chunking added semilarity added
+
+[33mcommit 9019fec7b0113e55dfa1ad03014d4245e23364e8[m[33m ([m[1;31morigin/vectordb[m[33m, [m[1;32mvectordb[m[33m)[m
+Author: MasudurRahman34 <mohammadmasud34@example.com>
+Date:   Thu Apr 9 16:36:29 2026 +0100
+
+    vector search added need to add langgraph
+
+[33mcommit 30b363c031e2c1f49e73b23487cfcdf726c6cd74[m
+Author: MasudurRahman34 <mohammadmasud34@example.com>
+Date:   Thu Apr 9 08:12:09 2026 +0100
+
+    vectore database with chromadb read, create, update done next similarity_search
+
+[33mcommit a517aeacc7653ba2652351edf298b8e403542f8d[m[33m ([m[1;31morigin/lawrag[m[33m, [m[1;32mlawrag[m[33m)[m
+Author: MasudurRahman34 <mohammadmasud34@example.com>
+Date:   Wed Mar 25 21:03:21 2026 +0000
+
+    initail folder structure
+
+[33mcommit 5cb7b13f2f27a32d4058e84d47362af43c6a1889[m[33m ([m[1;31morigin/langgraph[m[33m, [m[1;32mlanggraph[m[33m)[m
+Author: MasudurRahman34 <mohammadmasud34@example.com>
+Date:   Thu Mar 19 10:27:54 2026 +0000
+
+    agent-bot added with memory but without database
+
+[33mcommit a1ffd15550d3606834c0a184baca49275f60be3d[m
+Author: MasudurRahman34 <mohammadmasud34@example.com>
+Date:   Thu Mar 19 08:41:31 2026 +0000
+
+    agent-bot added without memeory
+
+[33mcommit 1ac5827c053b45bc81e8b898cf66b57708633010[m
+Author: MasudurRahman34 <mohammadmasud34@example.com>
+Date:   Fri Mar 13 17:59:17 2026 +0000
+
+    guess number game added in langgraph
+
+[33mcommit e7b524f536559c763298808ed12bf54e1b29afaa[m
+Author: MasudurRahman34 <mohammadmasud34@example.com>
+Date:   Sun Mar 1 09:35:47 2026 +0000
+
+    adding langgraph , doccument summarization , text to sql
