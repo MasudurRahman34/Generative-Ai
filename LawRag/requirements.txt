@@ -1,5 +1,4 @@
-fastapi
-uvicorn
+
 python-dotenv
 openai
 langchain
@@ -8,7 +7,12 @@ langchain-community
 langchain-chroma
 langgraph
 chromadb
+
+fastapi
+uvicorn
 psycopg2-binary
+asyncpg
+greenlet
 pydantic
 pydantic_core
 SQLAlchemy
