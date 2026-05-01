@@ -1,6 +1,6 @@
 from core.base import Base
 import uuid
-from sqlalchemy import Column, Integer, String, TIMESTAMP, BigInteger, Boolean,
+from sqlalchemy import Column, Integer, String, TIMESTAMP, BigInteger, Boolean
 from sqlalchemy.dialects.postgresql import UUID
 from datetime import datetime, timezone
 
@@ -17,7 +17,7 @@ class User(Base):
     create_at = Column(
         TIMESTAMP, nullable=False, default=lambda: datetime.now(timezone.utc)
     )
-    updated_at = (
-        Column(TIMESTAMP, nullable=False, default=lambda: datetime.now(timezone.utc))
+    updated_at = Column(
+        TIMESTAMP, nullable=False, default=lambda: datetime.now(timezone.utc)
     )
     deleted_at = Column(TIMESTAMP, nullable=True)
