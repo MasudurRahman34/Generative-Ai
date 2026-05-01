@@ -1,8 +1,29 @@
 from fastapi import FastAPI
 from core.llm import llm
-from core.config import engine
+from contextlib import asynccontextmanager
+from middlewares.cors import register_cors
+from core.database import check_db_connection
+from api import db_router
 
-app = FastAPI()
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # startup code
+    print("Starting up...")
+    # database connection check
+    db_status = await check_db_connection()
+    print(db_status["message"])
+
+    yield
+    # shutdown code
+    print("Shutting down...")
+
+
+app = FastAPI(title="Law RAG API", version="1.0.0", lifespan=lifespan)
+
+register_cors(app)
+
+app.include_router(prefix="/api/v1/db", router=db_router.router)
 
 
 @app.get("/")
@@ -14,15 +35,3 @@ def home():
 async def test_llm():
     response = llm.invoke("say hellow like a friendly assistant")
     return {"response:": response.content}
-
-
-@app.get("/db-check")
-async def db_check():
-    # from core.db import check_db_connection
-    # result = check_db_connection()
-    try:
-        conn = await engine.connect()
-        await conn.close()
-        return {"status": "success", "message": "Database is connected successfully"}
-    except Exception as e:
-        return {"status": "error", "message": str(e)}
