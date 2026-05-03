@@ -1,19 +1,42 @@
+# models/anonymous_session.py
+
 import uuid
-from sqlalchemy import Column, Integer, String, TIMESTAMP, BigInteger, Boolean
-from sqlalchemy.dialects.postgresql import UUID
 from datetime import datetime, timezone
+
+from sqlalchemy import TIMESTAMP, BigInteger
+from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
 from core.base import Base
 
 
 class AnonymousSession(Base):
     __tablename__ = "anonymous_sessions"
 
-    id = Column(BigInteger, primary_key=True, index=True)
-    session_id = Column(UUID(as_uuid=True), default=uuid.uuid4, unique=True, index=True)
-    create_at = Column(
-        TIMESTAMP, nullable=False, default=lambda: datetime.now(timezone.utc)
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, index=True)
+
+    session_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True), default=uuid.uuid4, unique=True, index=True
     )
-    updated_at = Column(
-        TIMESTAMP, nullable=False, default=lambda: datetime.now(timezone.utc)
+
+    create_at: Mapped[datetime] = mapped_column(
+        TIMESTAMP(timezone=True),
+        nullable=False,
+        default=lambda: datetime.now(timezone.utc),
     )
-    deleted_at = Column(TIMESTAMP, nullable=True)
+
+    updated_at: Mapped[datetime] = mapped_column(
+        TIMESTAMP(timezone=True),
+        nullable=False,
+        default=lambda: datetime.now(timezone.utc),
+        onupdate=lambda: datetime.now(timezone.utc),
+    )
+
+    deleted_at: Mapped[datetime | None] = mapped_column(
+        TIMESTAMP(timezone=True), nullable=True
+    )
+
+    # Relationships
+    conversations: Mapped[list["Conversation"]] = relationship(
+        back_populates="anonymous_session"
+    )
