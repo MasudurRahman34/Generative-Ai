@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 from middlewares.cors import register_cors
 from core.database import check_db_connection
 from api import db_router
+from api import anonymous_session_route
 
 
 @asynccontextmanager
@@ -24,6 +25,7 @@ app = FastAPI(title="Law RAG API", version="1.0.0", lifespan=lifespan)
 register_cors(app)
 
 app.include_router(prefix="/api/v1/db", router=db_router.router)
+app.include_router(prefix="/api/v1", router=anonymous_session_route.router)
 
 
 @app.get("/")

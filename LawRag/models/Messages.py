@@ -1,22 +1,42 @@
-from core.base import Base
-from sqlalchemy import Column, Integer, String, TIMESTAMP, BigInteger, Boolean, Text
-from sqlalchemy.dialects.postgresql import UUID
+# models/message.py
+
 from datetime import datetime, timezone
+
+from sqlalchemy import String, TIMESTAMP, BigInteger, ForeignKey, Text
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+from core.base import Base
 
 
 class Message(Base):
     __tablename__ = "messages"
 
-    id = Column(BigInteger, primary_key=True, index=True)
-    conversation_id = Column(
-        BigInteger, nullable=False, index=True
-    )  # Foreign key to Convesation
-    role = Column(String, nullable=False)  # 'user' or 'assistant'
-    content = Column(Text, nullable=False)
-    create_at = Column(
-        TIMESTAMP, nullable=False, default=lambda: datetime.now(timezone.utc)
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, index=True)
+
+    conversation_id: Mapped[int] = mapped_column(
+        BigInteger, ForeignKey("conversations.id"), nullable=False, index=True
     )
-    updated_at = Column(
-        TIMESTAMP, nullable=False, default=lambda: datetime.now(timezone.utc)
+
+    role: Mapped[str] = mapped_column(String, nullable=False)
+
+    content: Mapped[str] = mapped_column(Text, nullable=False)
+
+    create_at: Mapped[datetime] = mapped_column(
+        TIMESTAMP(timezone=True),
+        nullable=False,
+        default=lambda: datetime.now(timezone.utc),
     )
-    deleted_at = Column(TIMESTAMP, nullable=True)
+
+    updated_at: Mapped[datetime] = mapped_column(
+        TIMESTAMP(timezone=True),
+        nullable=False,
+        default=lambda: datetime.now(timezone.utc),
+        onupdate=lambda: datetime.now(timezone.utc),
+    )
+
+    deleted_at: Mapped[datetime | None] = mapped_column(
+        TIMESTAMP(timezone=True), nullable=True
+    )
+
+    # Relationships
+    conversation: Mapped["Conversation"] = relationship(back_populates="messages")
