@@ -9,3 +9,4 @@ torch
 tiktoken
 python-dotenv
 pypdf
+pdfplumber
